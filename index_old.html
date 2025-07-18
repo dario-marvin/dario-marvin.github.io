@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dario Marvin - Homepage</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      background: #fff;
+      color: #232526;
+      min-height: 100vh;
+    }
+    .navbar {
+      display: flex;
+      background: #222;
+      color: #fff;
+      padding: 0 20px;
+      align-items: center;
+      height: 60px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+    .navbar .tab {
+      margin-right: 30px;
+      padding: 10px 0;
+      cursor: pointer;
+      border: none;
+      background: none;
+      color: #fff;
+      font-size: 1.1em;
+      border-bottom: 2px solid transparent;
+      transition: border 0.2s;
+    }
+    .navbar .tab.active {
+      border-bottom: 2px solid #4caf50;
+      font-weight: bold;
+    }
+    .container {
+      max-width: 900px;
+      margin: 80px auto 0 auto;
+      background: none;
+      border-radius: 0;
+      box-shadow: none;
+      padding: 40px 36px 32px 36px;
+      position: relative;
+      color: #222;
+    }
+    .profile-section {
+  width: 100%;
+  margin-bottom: 20px;
+  position: relative;
+  min-height: 220px;
+  display: flow-root;
+}
+
+.profile-text-float {
+  font-size: 1.13em;
+  color: #222;
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+}
+    .profile-pic-topright {
+      float: right;
+      margin-left: 32px;
+      margin-bottom: 16px;
+      margin-top: 54px;
+      width: 220px;
+      max-width: 38vw;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.13);
+      object-fit: cover;
+      border: 2px solid #e0eafc;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 10px;
+      font-size: 2.2em;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+    .desc {
+      text-align: center;
+      color: #555;
+      margin-bottom: 30px;
+    }
+    @media (max-width: 900px) {
+      .profile-pic-topright {
+        width: 150px;
+        max-width: 60vw;
+      }
+    }
+    @media (max-width: 700px) {
+      .profile-pic-topright {
+        float: none;
+        display: block;
+        margin: 0 auto 18px auto;
+        width: 100%;
+        max-width: 320px;
+        min-width: 160px;
+        margin-top: 120px;
+      }
+    }
+    .site-title {
+      text-align: center;
+      margin-top: 32px;
+      margin-bottom: 0;
+    }
+    .site-title h1 {
+      font-size: 2.6em;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      color: #1a2a3a;
+      margin-bottom: 0;
+    }
+    .section-title {
+      font-size: 1.35em;
+      font-weight: 700;
+      color: #2a4d69;
+      margin-top: 18px;
+      margin-bottom: 10px;
+      letter-spacing: 0.01em;
+    }
+    .research-section {
+      width: 100%;
+      position: relative;
+      min-height: 220px;
+      display: flow-root;
+    }
+    .research-text-float {
+      text-align: left;
+      font-size: 1.13em;
+      color: #222;
+      line-height: 1.7;
+      letter-spacing: 0.01em;
+    }
+    .ozone-pic-belowtitle {
+      display: block;
+      float: right;
+      margin-left: 36px;
+      margin-bottom: 16px;
+      margin-top: 20px;
+      width: 320px;
+      max-width: 50vw;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.13);
+      object-fit: cover;
+      border: 2px solid #e0eafc;
+    }
+    @media (max-width: 900px) {
+      .ozone-pic-belowtitle {
+        width: 195px;
+        max-width: 70vw;
+      }
+    }
+    @media (max-width: 700px) {
+      .ozone-pic-belowtitle {
+        float: none;
+        display: block;
+        margin: 0 auto 18px auto;
+        width: 100%;
+        max-width: 360px;
+        min-width: 160px;
+      }
+    }
+    .profile-pic-float-wrapper {
+      width: 100%;
+    }
+    .project-img {
+      width: 100%;
+      max-width: 144px;
+      border-radius: 10px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+      border: 1.5px solid #e0eafc;
+      object-fit: cover;
+    }
+    @media (max-width: 700px) {
+      .project-img {
+        max-width: 216px;
+      }
+    }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 20% 1fr;
+      gap: 32px 28px;
+      align-items: stretch;
+      margin-top: 32px;
+    }
+    .project-image-cell {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+    }
+    .project-img {
+      width: 100%;
+      max-width: 144px;
+      border-radius: 10px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+      border: 1.5px solid #e0eafc;
+      object-fit: contain;
+      height: auto;
+      max-height: 180px;
+    }
+    .project-info-cell {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      background: none;
+      border-radius: 0;
+      padding: 18px 22px 18px 22px;
+      box-shadow: none;
+      border-left: none;
+      margin-bottom: 8px;
+      color: #222;
+      border-bottom: 1px solid #000;
+    }
+    .project-info-cell:last-child {
+      border-bottom: none;
+    }
+    .project-title {
+      margin: 0 0 8px 0;
+      font-size: 1.18em;
+      font-weight: 700;
+    }
+    .project-title a {
+      color: #2a4d69;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .project-title a:hover {
+      color: #4caf50;
+    }
+    @media (max-width: 700px) {
+      .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 18px 0;
+      }
+      .project-image-cell {
+        justify-content: flex-start;
+        align-items: flex-start;
+      }
+      .project-img {
+        max-width: 216px;
+        max-height: 240px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <button class="tab active" onclick="showTab('home')">Homepage</button>
+    <button class="tab" onclick="showTab('research')">Research</button>
+    <button class="tab" onclick="showTab('projects')">Projects</button>
+  </nav>
+
+  <div class="container">
+    <div id="home" class="tab-content">
+      <div class="profile-section">
+        <div class="profile-text-float">
+          <section>
+            <h1>Dario Marvin's Homepage</h1>
+            <div class="profile-pic-float-wrapper">
+              <img src="dario_marvin_pic.jpg" alt="Dario Marvin" class="profile-pic-topright">
+            </div>
+            <h2 class="section-title">Summary</h2>
+            Hi! I'm Dario, an applied mathematician and engineer with over five years of experience in data science, machine learning, and software engineering. I hold both a Bachelor's and a Master's degree from EPFL, Lausanne, where I built a strong foundation in mathematics, statistics, and data science through hands-on projects and coursework.<br><br>
+            My research at SUPSI focused on developing machine learning models to forecast extreme ozone values, which led to a peer-reviewed publication and gave me deep experience in data mining and real-world analytics. I'm also skilled in Python (particularly NumPy, SciPy, Pandas, Scikit-learn, PyTorch and Jupyter), R, MATLAB, SQL, and C++, and I enjoy applying these tools to solve challenging problems.<br><br>
+            I am fluent in Italian, English, and French, and I thrive in collaborative environments. I am always eager to embrace new challenges that create a positive impact on the environment and the lives of people.
+          </section>
+          <section>
+            <h2 class="section-title">Publications (see also Research)</h2> 
+            D. Marvin, L. Nespoli, D. Strepparava et al., "A data-driven approach to forecasting ground-level ozone concentration." International Journal of Forecasting (2021). <a href="https://doi.org/10.1016/j.ijforecast.2021.07.008" target="_blank">doi.org/10.1016/j.ijforecast.2021.07.008</a>
+          </section>
+        </div>
+        <div style="clear: both;"></div>
+      </div>
+    </div>
+    <div id="research" class="tab-content" style="display:none">
+      <h1>Research</h1>
+      <div class="research-section">
+        <div class="research-text-float">
+          <h2 class="section-title">Forecasting Ground-Level Ozone with Machine Learning</h2>
+          <img src="ozone.jpg" alt="Ozone Research" class="ozone-pic-belowtitle">
+          <p>
+            In this study, we developed a machine learning framework to forecast next-day peak ground-level ozone concentrations in southern Switzerland—a region with sparse monitoring infrastructure and complex terrain. Instead of relying on spatial models, we focused on feature selection and interpretability to build accurate, location-specific predictors.
+          </p>
+          <p>
+            We compared a custom genetic algorithm with Shapley value-based feature selection, the latter offering insights into variable importance and feature interactions. Our analysis showed that forecasted temperature and NO₂ levels were the most influential features, with ozone formation exhibiting a nonlinear (sigmoid-like) response to temperature—consistent with known atmospheric chemistry.
+          </p>
+          <p>
+            Among the models tested, LSBoost and NGBoost achieved the best performance, especially in forecasting extreme ozone events. Feature selection significantly improved both prediction accuracy and model efficiency.
+          </p>
+          <p>
+            This research highlights how interpretable, data-driven models can support effective air quality forecasting, even in data-sparse and topographically complex regions.
+          </p>
+          <p>
+            <strong>Read the full paper:</strong>
+            <a href="https://www.sciencedirect.com/science/article/pii/S0169207021001199" target="_blank">
+              A data-driven approach to forecasting ground-level ozone concentration (International Journal of Forecasting)
+            </a>
+          </p>
+        </div>
+        <div style="clear: both;"></div>
+      </div>
+    </div>
+    <div id="projects" class="tab-content" style="display:none">
+      <h1>Projects</h1>
+      <div class="projects-grid">
+        <div class="project-image-cell">
+          <img src="esp8266.jpg" alt="ESP8266 Project" class="project-img">
+        </div>
+        <div class="project-info-cell">
+          <h2 class="project-title">
+            <a href="https://github.com/dario-marvin/sensor-data" target="_blank">ESP8266 IoT Sensor Node</a>
+          </h2>
+          <p>
+            Home environment monitoring system that tracks temperature, humidity, and pressure in different rooms using ESP8266 boards and BME280 sensors. The system is designed to be lightweight, easy to set up, and accessible to anyone connected to the local Wi-Fi network.
+          </p>
+        </div>
+        <!-- New Project: MachineLearningDigits -->
+        <div class="project-image-cell">
+          <img src="page1_particular.png" alt="Machine Learning Digits Project" class="project-img">
+        </div>
+        <div class="project-info-cell">
+          <h2 class="project-title">
+            <a href="https://github.com/dario-marvin/MachineLearningDigits" target="_blank">Machine Learning for Badly Scanned Digit Recognition</a>
+          </h2>
+          <p>
+            A machine learning project focused on recognizing digits from badly scanned documents. I created the dataset myself by generating, printing, and scanning a sequence of digits, then extracting the digit images using custom image processing techniques. The project explores and compares several classification algorithms, with k-nearest neighbors achieving the best results (99.7% accuracy). The process covers the full pipeline from dataset creation to model evaluation.
+          </p>
+        </div>
+        <!-- New Project: MachineLearningLetters -->
+        <div class="project-image-cell">
+          <img src="letters.png" alt="Machine Learning Letters Project" class="project-img">
+        </div>
+        <div class="project-info-cell">
+          <h2 class="project-title">
+            <a href="https://github.com/dario-marvin/MachineLearningLetters" target="_blank">Machine Learning for Badly Scanned Letter Recognition</a>
+          </h2>
+          <p>
+            This project extends the digit recognition work to the recognition of individual letters from badly scanned documents. I created a new dataset by generating, printing, and scanning sequences of letters, then extracting the letter images using custom image processing. The project evaluates several machine learning classifiers, achieving high accuracy despite the challenges of misaligned and noisy scans. This work demonstrates the feasibility of applying similar techniques to more complex character recognition tasks. 
+          </p>
+        </div>
+        <!-- New Project: Mandelbrot Fractal Visualizer -->
+        <div class="project-image-cell">
+          <img src="Mandelbrot1_.png" alt="Mandelbrot Fractal Visualizer" class="project-img">
+        </div>
+        <div class="project-info-cell">
+          <h2 class="project-title">
+            <a href="https://github.com/dario-marvin/Mandelbrot" target="_blank">Mandelbrot Fractal Visualizer (Ubuntu Console)</a>
+          </h2>
+          <p>
+            A C++ script that visualizes Mandelbrot fractals directly in the Ubuntu console. Each character space in the terminal is mapped to a point in the complex plane and colored according to the fractal's iteration behavior, creating a striking ASCII-art representation of the Mandelbrot set.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    function showTab(tab) {
+      document.querySelectorAll('.tab-content').forEach(el => el.style.display = 'none');
+      document.getElementById(tab).style.display = '';
+      document.querySelectorAll('.navbar .tab').forEach(btn => btn.classList.remove('active'));
+      if(tab === 'home') document.querySelectorAll('.navbar .tab')[0].classList.add('active');
+      if(tab === 'research') document.querySelectorAll('.navbar .tab')[1].classList.add('active');
+      if(tab === 'projects') document.querySelectorAll('.navbar .tab')[2].classList.add('active');
+      // Store selected tab
+      localStorage.setItem('selectedTab', tab);
+    }
+
+    // On page load, restore last selected tab
+    window.addEventListener('DOMContentLoaded', function() {
+      var lastTab = localStorage.getItem('selectedTab') || 'home';
+      showTab(lastTab);
+    });
+  </script>
+</body>
+</html> 

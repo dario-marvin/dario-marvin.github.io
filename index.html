@@ -1,0 +1,371 @@
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dario Marvin - Homepage</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      background: linear-gradient(to bottom right, #f9fbfd, #eef3f8);
+      color: #232526;
+      min-height: 100vh;
+    }
+    .navbar {
+      display: flex;
+      background: #222;
+      color: #fff;
+      padding: 0 20px;
+      align-items: center;
+      height: 60px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    }
+    .navbar .tab {
+      margin-right: 30px;
+      padding: 10px 0;
+      cursor: pointer;
+      border: none;
+      background: none;
+      color: #fff;
+      font-size: 1.1em;
+      border-bottom: 2px solid transparent;
+      transition: border 0.2s, color 0.2s;
+    }
+    .navbar .tab.active, .navbar .tab:hover {
+      border-bottom: 2px solid #4caf50;
+      color: #4caf50;
+    }
+    .container {
+      max-width: 900px;
+      margin: 80px auto 0 auto;
+      padding: 40px 36px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.05);
+      padding: 32px;
+      margin-bottom: 4px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 10px;
+      font-size: 2.2em;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+    .section-title {
+      font-size: 1.35em;
+      font-weight: 700;
+      color: #2a4d69;
+      margin-top: 18px;
+      margin-bottom: 10px;
+      letter-spacing: 0.01em;
+    }
+    .profile-pic-topright {
+      float: right;
+      margin-left: 32px;
+      margin-bottom: 16px;
+      margin-top: 50px;
+      width: 220px;
+      max-width: 38vw;
+      border-radius: 12px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.13);
+      object-fit: cover;
+      border: 2px solid #e0eafc;
+    }
+    .ozone-pic-belowtitle {
+      float: right;
+      margin-left: 32px;
+      margin-bottom: 16px;
+      margin-top: 0;
+      width: 220px;
+      max-width: 38vw;
+      border-radius: 12px;
+      box-shadow: none;
+      object-fit: cover;
+      border: none;
+    }
+    .tab-content {
+      transition: opacity 0.4s ease-in-out;
+    }
+    .cta-btn {
+      display: inline-block;
+      margin-top: 24px;
+      margin-bottom: 20px;
+      padding: 12px 24px;
+      font-size: 1.1em;
+      background-color: #4caf50;
+      color: #fff;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+    .cta-btn:hover {
+      background-color: #45a045;
+    }
+    .tech-pill-row {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 8px;
+      margin-top: 6px;
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
+    .tech-pill {
+      display: inline-block;
+      background: #e0eafc;
+      color: #2a4d69;
+      padding: 4px 10px;
+      font-size: 0.85em;
+      border-radius: 12px;
+      white-space: nowrap;
+    }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 20% 1fr;
+      gap: 32px 28px;
+      align-items: center;
+      margin-top: 32px;
+    }
+    .project-image-cell, .project-info-cell {
+      display: flex;
+      align-items: center;
+    }
+    .project-info-cell {
+      flex-direction: column;
+      justify-content: center;
+      padding: 18px 22px;
+      border-left: 4px solid transparent;
+      transition: background 0.3s, border 0.3s;
+    }
+    .project-img {
+      width: 100%;
+      max-width: 144px;
+      border-radius: 10px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+      border: 1.5px solid #e0eafc;
+      object-fit: contain;
+      max-height: 180px;
+    }
+    .project-info-cell:hover {
+      background: #f5f9ff;
+      border-left: 4px solid #4caf50;
+    }
+    footer {
+      text-align: center;
+      padding: 2px 0 18px 0;
+      color: #777;
+      margin-top: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+    }
+    .project-title {
+      margin: 0 0 8px 0;
+      font-size: 1.18em;
+      font-weight: 700;
+      color: #232526;
+      text-align: left;
+    }
+    .project-title a {
+      color: #3566a8;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .project-title a:hover {
+      color: #274472;
+      text-decoration: underline;
+    }
+    @media (max-width: 700px) {
+      .profile-pic-topright, .ozone-pic-belowtitle {
+        float: none;
+        display: block;
+        margin: 0 auto 18px auto;
+        max-width: 320px;
+      }
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <button class="tab active" onclick="showTab('home')">Homepage</button>
+    <button class="tab" onclick="showTab('research')">Research</button>
+    <button class="tab" onclick="showTab('projects')">Projects</button>
+  </nav>
+
+  <div class="container">
+    <div id="home" class="tab-content card">
+      <h1>Dario Marvin's Homepage</h1>
+      <img src="dario_marvin_pic.jpg" alt="Dario Marvin" class="profile-pic-topright">
+      <h2 class="section-title">Summary</h2>
+      <p>            Hi! I'm Dario, an applied mathematician and engineer with over five years of experience in data science, machine learning, and software engineering. I hold both a Bachelor's and a Master's degree from EPFL, Lausanne, where I built a strong foundation in mathematics, statistics, and data science through hands-on projects and coursework.<br><br>
+            My research at SUPSI focused on developing machine learning models to forecast extreme ozone values, which led to a peer-reviewed publication and gave me deep experience in data mining and real-world analytics. I'm also skilled in Python (particularly NumPy, SciPy, Pandas, Scikit-learn, PyTorch and Jupyter), R, MATLAB, SQL, and C++, and I enjoy applying these tools to solve challenging problems.<br><br>
+            I am fluent in Italian, English, and French, and I thrive in collaborative environments. I am always eager to embrace new challenges that create a positive impact on the environment and the lives of people.</p>
+      <a href="mailto:dario.marvin@bluewin.ch" class="cta-btn">Get in Touch</a>
+
+      <h2 class="section-title">Publications</h2>
+      <p>
+        D. Marvin et al., "A data-driven approach to forecasting ground-level ozone concentration", International Journal of Forecasting (2021).
+        <a href="https://doi.org/10.1016/j.ijforecast.2021.07.008" target="_blank">Read the paper</a>
+      </p>
+    </div>
+
+    <div id="research" class="tab-content card" style="display:none">
+      <h1>Research</h1>
+      <h2 class="section-title">Forecasting Ground-Level Ozone</h2>
+      <img src="ozone.jpg" alt="Ozone Research" class="ozone-pic-belowtitle">
+                <p>
+            In this study, we developed a machine learning framework to forecast next-day peak ground-level ozone concentrations in southern Switzerland—a region with sparse monitoring infrastructure and complex terrain. Instead of relying on spatial models, we focused on feature selection and interpretability to build accurate, location-specific predictors.
+          </p>
+          <p>
+            We compared a custom genetic algorithm with Shapley value-based feature selection, the latter offering insights into variable importance and feature interactions. Our analysis showed that forecasted temperature and NO₂ levels were the most influential features, with ozone formation exhibiting a nonlinear (sigmoid-like) response to temperature—consistent with known atmospheric chemistry.
+          </p>
+          <p>
+            Among the models tested, LSBoost and NGBoost achieved the best performance, especially in forecasting extreme ozone events. Feature selection significantly improved both prediction accuracy and model efficiency.
+          </p>
+          <p>
+            <strong>Read the full paper:</strong>
+            <a href="https://www.sciencedirect.com/science/article/pii/S0169207021001199" target="_blank">
+              A data-driven approach to forecasting ground-level ozone concentration
+            </a>
+          </p>
+
+    </div>
+
+    <div id="projects" class="tab-content card" style="display:none">
+      <h1>Projects</h1>
+      <div class="projects-grid">
+        <div class="project-image-cell">
+          <img src="esp8266.jpg" alt="ESP8266 Project" class="project-img">
+        </div>
+        <div class="project-info-cell">
+          <h2 class="project-title">
+            <a href="https://github.com/dario-marvin/sensor-data" target="_blank">ESP8266 IoT Sensor Node</a>
+          </h2>
+          <p>
+            Home environment monitoring system that tracks temperature, humidity, and pressure in different rooms using ESP8266 boards and BME280 sensors.
+          </p>
+          <div class="tech-pill-row">
+            <span class="tech-pill">Arduino</span> <span class="tech-pill">IoT</span> <span class="tech-pill">ESP8266</span>
+          </div>
+        </div>
+        <!-- New Project: MachineLearningDigits -->
+        <div class="project-image-cell">
+          <img src="page1_particular.png" alt="Machine Learning Digits Project" class="project-img">
+        </div>
+        <div class="project-info-cell">
+          <h2 class="project-title">
+            <a href="https://github.com/dario-marvin/MachineLearningDigits" target="_blank">Machine Learning for Badly Scanned Digit Recognition</a>
+          </h2>
+          <p>
+            A machine learning project focused on recognizing digits from badly scanned documents. The dataset was created from scratch by generating, printing, and scanning a sequence of digits, then by extracting the digit images using image processing techniques.
+          </p>
+          <div class="tech-pill-row">
+            <span class="tech-pill">Python</span> <span class="tech-pill">ML</span> <span class="tech-pill">OCR</span>
+          </div>
+        </div>
+        <!-- New Project: MachineLearningLetters -->
+        <div class="project-image-cell">
+          <img src="letters.png" alt="Machine Learning Letters Project" class="project-img">
+        </div>
+        <div class="project-info-cell">
+          <h2 class="project-title">
+            <a href="https://github.com/dario-marvin/MachineLearningLetters" target="_blank">Machine Learning for Badly Scanned Letter Recognition</a>
+          </h2>
+          <p>
+            This project extends the digit recognition work to the recognition of individual letters from badly scanned documents. The new dataset was created from scratch by generating, printing, and scanning sequences of letters, then by extracting the letter images using image processing techniques.
+          </p>
+          <div class="tech-pill-row">
+            <span class="tech-pill">Python</span> <span class="tech-pill">ML</span> <span class="tech-pill">OCR</span> 
+          </div>
+        </div>
+        <!-- New Project: Mandelbrot Fractal Visualizer -->
+        <div class="project-image-cell">
+          <img src="Mandelbrot1_.png" alt="Mandelbrot Fractal Visualizer" class="project-img">
+        </div>
+        <div class="project-info-cell">
+          <h2 class="project-title">
+            <a href="https://github.com/dario-marvin/Mandelbrot" target="_blank">Mandelbrot Fractal Visualizer (Ubuntu Console)</a>
+          </h2>
+          <p>
+            A C++ script that visualizes Mandelbrot fractals directly in the Ubuntu console. Each character space in the terminal is mapped to a point in the complex plane and colored according to the fractal's iteration behavior.
+          </p>
+          <div class="tech-pill-row">
+            <span class="tech-pill">C++</span> <span class="tech-pill">Mathematics</span> <span class="tech-pill">Fractals</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <a href="mailto:dario.marvin@bluewin.ch" class="icon-btn" title="Email">
+      <img src="email.png" alt="Email" width="24" height="24" />
+    </a>
+    <span class="footer-separator"></span>
+    <a href="https://linkedin.com/in/dario-marvin" class="icon-btn" title="LinkedIn" target="_blank" rel="noopener">
+      <img src="linkedin.png" alt="LinkedIn" width="24" height="24" />
+    </a>
+  </footer>
+  <style>
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin: 0 2px;
+  border-radius: 50%;
+  background: #f8fafc;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  border: none;
+  transition: background 0.2s, box-shadow 0.2s;
+  text-decoration: none;
+}
+.icon-btn:hover {
+  background: #e0eafc;
+  box-shadow: 0 4px 16px rgba(76,175,80,0.10);
+}
+.icon-btn svg {
+  display: block;
+}
+.footer-separator {
+  display: inline-block;
+  width: 1.5px;
+  height: 28px;
+  background: #bbb;
+  margin: 0 2px;
+  border-radius: 2px;
+  align-self: center;
+}
+</style>
+
+  <script>
+    function showTab(tab) {
+      document.querySelectorAll('.tab-content').forEach(el => el.style.display = 'none');
+      document.getElementById(tab).style.display = 'block';
+      document.querySelectorAll('.navbar .tab').forEach(btn => btn.classList.remove('active'));
+      const index = ['home', 'research', 'projects'].indexOf(tab);
+      if (index >= 0) document.querySelectorAll('.navbar .tab')[index].classList.add('active');
+      localStorage.setItem('selectedTab', tab);
+    }
+    window.addEventListener('DOMContentLoaded', () => {
+      const lastTab = localStorage.getItem('selectedTab') || 'home';
+      showTab(lastTab);
+    });
+  </script>
+</body>
+</html>
