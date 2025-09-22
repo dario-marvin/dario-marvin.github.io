@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Bash: Find large files in current folder",
+    "code": "du -ah . | sort -hr | head -n 20",
+    "description": "List the 20 largest files/directories in the current path.",
+    "keywords": ["bash", "disk", "du", "sort"]
+  },
+  {
+    "title": "Python: Validate number with Regex",
+    "codeFile": "snippets/regex_validate_number.py",
+    "description": "Given a string, check whether it represents a valid number.\nFor instance, [[+3.14]], [[5.]], [[-.3]], [[-70E5]], [[27.9e42]], [[-123.456e789]] are all valid numbers, while [[abc]], [[1a]], [[1e]], [[e3]], [[99e2.5]], [[--6]], [[-+3]], [[95a54e53]] are not valid numbers.\nThe logic of the regex reads: \"A string may start with a sign, followed by [either digits (optionally with a decimal part) or a decimal without leading digits], optionally followed by an exponent part, and nothing else.",
+    "keywords": ["python", "regex", "validation", "number", "format"]
+  },
+  {
+    "title": "Python: Pandas multiprocessing patterns on rows and columns",
+    "codeFile": "snippets/pandas_multiprocessing.py",
+    "description": "Use Python multiprocessing to parallelize row-wise and column-wise operations on a Pandas [[DataFrame]].\n\n- Row-wise: iterate efficiently with [[df.itertuples(name=None)]] and process with [[Pool.imap]] in parallel.\n- Column-wise: iterate columns with [[df.items()]] and compute in parallel.\n\nTips:\n- Prefer [[imap]] over [[map]] to start yielding results earlier.\n- Tune [[chunksize]] to balance overhead vs throughput (try 1000+ for large frames).\n- Avoid capturing large globals inside your worker; pass only what you need.",
+    "keywords": ["python", "pandas", "multiprocessing", "performance", "dataframe"]
+  },
+  {
+    "title": "Python: Efficient prime numbers generation",
+    "codeFile": "snippets/efficient_primes.py",
+    "description": "Different algorithm implementation to generate the list of prime numbers up to a number [[n]].",
+    "keywords": ["python", "primes", "mathematics", "performance"]
+  }
+]

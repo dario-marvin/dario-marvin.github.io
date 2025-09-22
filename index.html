@@ -6,6 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dario Marvin - Homepage</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/javascript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/xml.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
   <style>
     body {
       font-family: 'Inter', sans-serif;
@@ -204,6 +210,7 @@
     <button class="tab active" onclick="showTab('home')">Homepage</button>
     <button class="tab" onclick="showTab('research')">Research</button>
     <button class="tab" onclick="showTab('projects')">Projects</button>
+    <button class="tab" onclick="showTab('useful')">Useful stuff</button>
   </nav>
 
   <div class="container">
@@ -309,6 +316,19 @@
         </div>
       </div>
     </div>
+
+    <div id="useful" class="tab-content card" style="display:none">
+      <h1>Useful stuff</h1>
+      <input id="useful-search" class="useful-search" type="text" placeholder="Search by keyword, title, or text..." aria-label="Search useful snippets">
+      <div id="useful-grid" class="useful-grid" aria-live="polite"></div>
+      <div id="useful-detail" class="useful-detail" style="display:none">
+        <button id="useful-back" class="useful-back-btn" type="button">← Back to all items</button>
+        <h2 id="useful-detail-title" class="useful-detail-title"></h2>
+        <div class="useful-detail-meta" id="useful-detail-meta"></div>
+        <pre class="useful-code"><code id="useful-detail-code"></code></pre>
+        <p id="useful-detail-desc" class="useful-detail-desc"></p>
+      </div>
+    </div>
   </div>
 
   <footer>
@@ -351,6 +371,116 @@
   border-radius: 2px;
   align-self: center;
 }
+
+/* Useful stuff styles */
+.useful-search {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 8px 0 16px 0;
+  padding: 10px 12px;
+  border: 1px solid #d8e2f1;
+  border-radius: 8px;
+  font-size: 1em;
+}
+.useful-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+.useful-card {
+  background: #ffffff;
+  border: 1px solid #e0eafc;
+  border-radius: 10px;
+  padding: 14px;
+  cursor: pointer;
+  transition: box-shadow 0.2s, transform 0.05s;
+}
+.useful-card:hover {
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+.useful-card:active {
+  transform: translateY(1px);
+}
+.useful-card-title {
+  margin: 0 0 6px 0;
+  font-size: 1.02em;
+  font-weight: 700;
+  color: #232526;
+}
+.useful-card-keywords {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.useful-keyword {
+  background: #e0eafc;
+  color: #2a4d69;
+  padding: 2px 8px;
+  font-size: 0.78em;
+  border-radius: 10px;
+}
+.useful-card-snippet {
+  margin-top: 8px;
+  background: #f7f9fc;
+  border: 1px solid #eef3f8;
+  border-radius: 8px;
+  padding: 8px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 12.5px;
+  color: #2b2b2b;
+  max-height: 120px;
+  overflow: hidden;
+  white-space: pre-wrap;
+}
+.useful-detail {
+  margin-top: 12px;
+}
+.useful-back-btn {
+  display: inline-block;
+  margin: 0 0 8px 0;
+  padding: 8px 12px;
+  background: #f0f6ff;
+  color: #274472;
+  border: 1px solid #d8e2f1;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.useful-detail-title {
+  margin: 8px 0 6px 0;
+}
+.useful-detail-meta {
+  margin: 0 0 10px 0;
+  color: #3566a8;
+  font-size: 0.92em;
+}
+.useful-code {
+  background: #0b1020;
+  color: #e6edf3;
+  border-radius: 10px;
+  padding: 14px;
+  overflow: auto;
+  max-height: 420px;
+}
+.useful-detail-desc {
+  margin-top: 12px;
+  white-space: pre-wrap;
+}
+
+/* Inline highlight for variables/numbers/components inside descriptions */
+.useful-inline {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  background: #eaebee;
+  border: 1px solid #eef3f8;
+  border-radius: 6px;
+  padding: 0 4px;
+  color: #2b2b2b;
+}
+
+@media (max-width: 700px) {
+  .useful-grid {
+    grid-template-columns: 1fr;
+  }
+}
 </style>
 
   <script>
@@ -358,14 +488,197 @@
       document.querySelectorAll('.tab-content').forEach(el => el.style.display = 'none');
       document.getElementById(tab).style.display = 'block';
       document.querySelectorAll('.navbar .tab').forEach(btn => btn.classList.remove('active'));
-      const index = ['home', 'research', 'projects'].indexOf(tab);
+      const index = ['home', 'research', 'projects', 'useful'].indexOf(tab);
       if (index >= 0) document.querySelectorAll('.navbar .tab')[index].classList.add('active');
       localStorage.setItem('selectedTab', tab);
     }
     window.addEventListener('DOMContentLoaded', () => {
       const lastTab = localStorage.getItem('selectedTab') || 'home';
       showTab(lastTab);
+      initUseful();
     });
+
+    function initUseful() {
+      const grid = document.getElementById('useful-grid');
+      const detail = document.getElementById('useful-detail');
+      const backBtn = document.getElementById('useful-back');
+      const searchInput = document.getElementById('useful-search');
+      const detailTitle = document.getElementById('useful-detail-title');
+      const detailMeta = document.getElementById('useful-detail-meta');
+      const detailCode = document.getElementById('useful-detail-code');
+      const detailDesc = document.getElementById('useful-detail-desc');
+
+      let items = [];
+      let filtered = [];
+      let currentDetailRequestId = 0;
+
+      fetch('useful.json')
+        .then(r => r.json())
+        .then(data => {
+          items = Array.isArray(data) ? data : (data.items || []);
+          filtered = items.slice();
+          renderGrid(filtered);
+        })
+        .catch(() => {
+          grid.innerHTML = '<p style="color:#a33">Failed to load useful.json</p>';
+        });
+
+      function renderGrid(list) {
+        detail.style.display = 'none';
+        grid.style.display = 'grid';
+        grid.innerHTML = '';
+        if (!list.length) {
+          grid.innerHTML = '<p>No items match your search.</p>';
+          return;
+        }
+        list.forEach((it, idx) => {
+          const card = document.createElement('div');
+          card.className = 'useful-card';
+          const lang = getLanguageFromItem(it);
+          card.innerHTML = `
+            <div class="useful-card-title">${escapeHtml(it.title || 'Untitled')}</div>
+            <div class="useful-card-keywords">${(it.keywords||[]).map(k=>`<span class="useful-keyword">${escapeHtml(k)}</span>`).join(' ')}</div>
+            <pre class="useful-card-snippet"><code class="hljs ${lang}"></code></pre>
+          `;
+          const codeEl = card.querySelector('code');
+          if (it.codeFile) {
+            codeEl.textContent = 'Loading preview...';
+            fetch(it.codeFile)
+              .then(r => r.ok ? r.text() : Promise.reject(new Error('Fetch failed')))
+              .then(txt => {
+                codeEl.textContent = snippetPreview(txt || '', 12);
+                highlightWhenReady(codeEl);
+              })
+              .catch(() => { codeEl.textContent = 'Failed to load preview.'; });
+          } else if (it.code) {
+            codeEl.textContent = snippetPreview(it.code || '', 12);
+            highlightWhenReady(codeEl);
+          }
+          card.addEventListener('click', () => showDetail(it));
+          grid.appendChild(card);
+        });
+      }
+
+      function showDetail(it) {
+        const requestId = ++currentDetailRequestId;
+        grid.style.display = 'none';
+        detail.style.display = 'block';
+        detailTitle.textContent = it.title || 'Untitled';
+        detailMeta.textContent = (it.keywords || []).join(' · ');
+        // Render description with optional custom delimiters for inline highlights
+        const startDelim = it.encloseStart || '`';
+        const endDelim = it.encloseEnd || '`';
+        detailDesc.innerHTML = renderRichText(it.description || '', startDelim, endDelim);
+        const lang = getLanguageFromItem(it);
+
+        // Clear any existing highlight.js classes and data
+        detailCode.className = '';
+        detailCode.removeAttribute('data-highlighted');
+        detailCode.classList.add('hljs', lang);
+
+        if (it.codeFile && !it.code) {
+          detailCode.textContent = 'Loading code from ' + it.codeFile + ' ...';
+          fetch(it.codeFile)
+            .then(r => r.ok ? r.text() : Promise.reject(new Error('Fetch failed')))
+            .then(txt => {
+              if (requestId !== currentDetailRequestId) return;
+              detailCode.textContent = txt;
+              detailCode.removeAttribute('data-highlighted');
+              highlightWhenReady(detailCode);
+            })
+            .catch(() => { detailCode.textContent = 'Failed to load code file.'; });
+        } else if (it.code) {
+          detailCode.textContent = it.code || '';
+          detailCode.removeAttribute('data-highlighted');
+          highlightWhenReady(detailCode);
+        } else {
+          detailCode.textContent = '';
+          detailCode.removeAttribute('data-highlighted');
+        }
+        // Ensure code is scrollable from top
+        const pre = detailCode.parentElement;
+        pre.scrollTop = 0;
+      }
+
+      backBtn.addEventListener('click', () => {
+        renderGrid(filtered);
+      });
+
+      searchInput.addEventListener('input', () => {
+        const q = searchInput.value.trim().toLowerCase();
+        if (!q) {
+          filtered = items.slice();
+        } else {
+          filtered = items.filter(it => {
+            const inTitle = (it.title||'').toLowerCase().includes(q);
+            const inDesc = (it.description||'').toLowerCase().includes(q);
+            const inKeys = (it.keywords||[]).some(k => (k||'').toLowerCase().includes(q));
+            const inCode = (it.code||'').toLowerCase().includes(q);
+            return inTitle || inDesc || inKeys || inCode;
+          });
+        }
+        // If detail is open, go back to grid when searching
+        if (detail.style.display !== 'none') {
+          renderGrid(filtered);
+        } else {
+          renderGrid(filtered);
+        }
+      });
+
+      function snippetPreview(code, maxLines) {
+        const lines = (code || '').split('\n');
+        if (lines.length <= maxLines) return code;
+        return lines.slice(0, maxLines).join('\n') + '\n...';
+      }
+
+      function escapeHtml(str) {
+        return String(str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;');
+      }
+      function renderRichText(text, startDelim, endDelim) {
+        let safe = escapeHtml(text || '');
+        // Collect delimiter pairs, deduping
+        const pairs = [];
+        const seen = new Set();
+        const pushPair = (a, b) => {
+          const key = `${a}__${b}`;
+          if (a && b && !seen.has(key)) { pairs.push([a, b]); seen.add(key); }
+        };
+        // Custom pair if provided
+        pushPair(startDelim, endDelim);
+        // Always also support backticks and [[ ]]
+        pushPair('`', '`');
+        pushPair('[[', ']]');
+        // Apply each pair sequentially
+        pairs.forEach(([a, b]) => {
+          const pattern = new RegExp(escapeRegex(a) + '([\\s\\S]*?)' + escapeRegex(b), 'g');
+          safe = safe.replace(pattern, (_m, inner) => `<span class="useful-inline">${inner}</span>`);
+        });
+        return safe;
+      }
+      function escapeRegex(s) {
+        return String(s).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      }
+      function getLanguageFromItem(it) {
+        const keys = (it.keywords || []).map(k => String(k).toLowerCase());
+        if (keys.includes('python')) return 'language-python';
+        if (keys.includes('javascript') || keys.includes('js')) return 'language-javascript';
+        if (keys.includes('html')) return 'language-html';
+        if (keys.includes('bash') || keys.includes('sh') || keys.includes('shell')) return 'language-bash';
+        return '';
+      }
+      function highlightWhenReady(codeEl, attempt = 0) {
+        if (window.hljs && typeof hljs.highlightElement === 'function') {
+          hljs.highlightElement(codeEl);
+          return;
+        }
+        if (attempt < 50) {
+          setTimeout(() => highlightWhenReady(codeEl, attempt + 1), 80);
+        }
+      }
+    }
   </script>
 </body>
 </html>
