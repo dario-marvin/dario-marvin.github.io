@@ -20,7 +20,7 @@
   {
     "title": "Python: Efficient prime numbers generation",
     "codeFile": "snippets/efficient_primes.py",
-    "description": "Different algorithm implementation to generate the list of prime numbers up to a number [[n]].",
+    "description": "Different algorithm implementation to generate the list of prime numbers below a number [[n]]. Discussion: https://stackoverflow.com/questions/2068372/fastest-way-to-list-all-primes-below-n",
     "keywords": ["python", "primes", "mathematics", "performance"]
   },
   {
