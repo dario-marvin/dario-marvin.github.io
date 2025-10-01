@@ -37,8 +37,7 @@ def sieve_eratosthenes(n: int) -> List[int]:
 
 # Sieve with numpy acceleration
 
-def primesfrom2to(n):
-    n=n+1
+def primesfrom2to(n: int) -> List[int]:
     sieve = np.ones(n//3 + (n%6==2), dtype=bool)
     for i in range(1,int(n**0.5)//3+1):
         if sieve[i]:
