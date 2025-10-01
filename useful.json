@@ -22,5 +22,11 @@
     "codeFile": "snippets/efficient_primes.py",
     "description": "Different algorithm implementation to generate the list of prime numbers up to a number [[n]].",
     "keywords": ["python", "primes", "mathematics", "performance"]
+  },
+  {
+    "title": "Python: Merge Sort",
+    "codeFile": "snippets/merge_sort.py",
+    "description": "Recursively split a list into halves, sort them, and merge them back together. Divide-and-conquer sorting algorithm with O(n log n) complexity",
+    "keywords": ["python", "sort", "performance"]
   }
 ]
