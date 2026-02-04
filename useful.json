@@ -28,5 +28,11 @@
     "codeFile": "snippets/merge_sort.py",
     "description": "Recursively split a list into halves, sort them, and merge them back together. Divide-and-conquer sorting algorithm with O(n log n) complexity",
     "keywords": ["python", "sort", "performance"]
+  },
+  {
+    "title": "Python: Colormap extraction",
+    "codeFile": "snippets/colors.py",
+    "description": "Discretize and extract [[n]] colors from an existing colormap, e.g. https://matplotlib.org/stable/tutorials/colors/colormaps.html",
+    "keywords": ["python", "colormap", "colors", "visual"]
   }
 ]
