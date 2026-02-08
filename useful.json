@@ -38,7 +38,7 @@
   {
     "title": "Python: millify numbers",
     "codeFile": "snippets/millify.py",
-    "description": "Round any number to two decimals followed by the appropriate thousands multiplier, e.g. [[3.12m]],  [[7qa]],  [[143.85b]].",
+    "description": "Round any number to up to two decimals followed by the appropriate thousands multiplier, e.g. [[3.12m]],  [[7.0qa]],  [[143.85b]].",
     "keywords": ["python", "number", "round", "millify"]
   }
 ]
