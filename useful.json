@@ -34,5 +34,11 @@
     "codeFile": "snippets/colors.py",
     "description": "Discretize and extract [[n]] colors from an existing colormap, e.g. https://matplotlib.org/stable/tutorials/colors/colormaps.html",
     "keywords": ["python", "colormap", "colors", "visual"]
+  },
+  {
+    "title": "Python: millify numbers",
+    "codeFile": "snippets/millify.py",
+    "description": "Round any number to two decimals followed by the appropriate thousands multiplier, e.g. [[3.12m]],  [[7qa]],  [[143.85b]].",
+    "keywords": ["python", "number", "round", "millify"]
   }
 ]
