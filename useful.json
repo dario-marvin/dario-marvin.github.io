@@ -24,7 +24,7 @@
     "keywords": ["python", "primes", "mathematics", "performance"]
   },
   {
-    "title": "Python: Merge Sort",
+    "title": "Python: Merge sort",
     "codeFile": "snippets/merge_sort.py",
     "description": "Recursively split a list into halves, sort them, and merge them back together. Divide-and-conquer sorting algorithm with O(n log n) complexity",
     "keywords": ["python", "sort", "performance"]
@@ -36,9 +36,15 @@
     "keywords": ["python", "colormap", "colors", "visual"]
   },
   {
-    "title": "Python: millify numbers",
+    "title": "Python: Millify numbers",
     "codeFile": "snippets/millify.py",
     "description": "Round any number to up to two decimals followed by the appropriate thousands multiplier, e.g. [[3.12m]],  [[7.0qa]],  [[143.85b]].",
     "keywords": ["python", "number", "round", "millify"]
+  },
+  {
+    "title": "Python: Binary search",
+    "codeFile": "snippets/binary_search.py",
+    "description": "Find the index of an element in a sorted array.",
+    "keywords": ["python", "binary", "search"]
   }
 ]
