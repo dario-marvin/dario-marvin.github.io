@@ -44,7 +44,7 @@
   {
     "title": "Python: Binary search",
     "codeFile": "snippets/binary_search.py",
-    "description": "Find the index of an element in a sorted array.",
+    "description": "Find the index of an element in a sorted array with O(log n) complexity.",
     "keywords": ["python", "binary", "search"]
   }
 ]
